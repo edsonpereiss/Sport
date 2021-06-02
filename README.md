@@ -39,5 +39,5 @@
 
 # docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
-# mongodb://soccer:Mongo2021@localhost:27017
+# mongodb://root:Mongo2021@localhost:27017
 

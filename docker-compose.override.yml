@@ -19,7 +19,7 @@ services:
             #-  "DatabaseSettings:ConnectionString=mongodb://SportDb:27017"
             - "DatabaseSettings:ConnectionString=mongodb://root:Mongo2021@sportDb:27017"
         depends_on: 
-            - SportDb
+            - sportDb
         ports:
             - 5000:5000
         networks:
