@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+    sportDb:
+        container_name: sportDb
+        command: [--auth]
+        restart: always
+        ports: 
+            - "27017:27017"
+        volumes: 
+            - mongo_data:/data/db 
+        networks:
+            - mongo-compose-network
+
+    sport:
+        container_name: sport
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            #-  "DatabaseSettings:ConnectionString=mongodb://SportDb:27017"
+            - "DatabaseSettings:ConnectionString=mongodb://root:Mongo2021@sportDb:27017"
+        depends_on: 
+            - SportDb
+        ports:
+            - 5000:5000
+        networks:
+            - mongo-compose-network
+
+networks: 
+    mongo-compose-network:
+      driver: bridge
