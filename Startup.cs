@@ -46,7 +46,13 @@ namespace Sport
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
+#if DEBUG
+               // For Debug in Kestrel
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sport v1"));
+#else
+               // To deploy on IIS
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/data/swagger/v1/swagger.json", "Sport v1"));
+#endif                
             }
 
             app.UseHttpsRedirection();
