@@ -34,6 +34,7 @@ namespace Sport.Controllers
         fixturesByIdLive,
         seasonTeams,
         seasonResults,
+        seasonMatchesByRounds,
         seasonSquad,
         seasonTopPlayers,
         fixturesById,
