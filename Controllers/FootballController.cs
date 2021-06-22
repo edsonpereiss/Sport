@@ -83,7 +83,7 @@ namespace Sport.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
-        public object fixturesForDate(long id, string api_token  = null, string include = null)
+        public object fixturesById(long id, string api_token  = null, string include = null, string compact = null)
         {
             ParamApi paramApi = new ParamApi();
             paramApi.Qry.Add("api_token", api_token);
@@ -93,7 +93,23 @@ namespace Sport.Controllers
 
             paramApi.Rst.Add("id", id.ToString());
 
-            return CallApi(ApiRef.fixturesById, paramApi).objJson;       
+            //return CallApi(ApiRef.fixturesById, paramApi).objJson;
+            ResultJson result = CallApi(ApiRef.fixturesById, paramApi);
+            if ((result.strJson != null) && (!string.IsNullOrEmpty(compact)))
+            {
+                if (compact == "1")
+                {
+                    Models.Fixtures.Fixture fixture = JsonConvert.DeserializeObject<Models.Fixtures.Fixture>(result.strJson);
+                    return fixture;
+                }
+                else
+                {
+                    return result.objJson;      
+                }
+            } 
+            return result.objJson;      
+
+
         }
 
         [HttpGet]

@@ -71,8 +71,8 @@ namespace Sport.Models.Matches
         [JsonProperty("round_id")]
         public long RoundId { get; set; }
 
-        //[JsonProperty("group_id")]
-        //public object GroupId { get; set; }
+        [JsonProperty("group_id")]
+        public object GroupId { get; set; }
 
         //[JsonProperty("aggregate_id")]
         //public object AggregateId { get; set; }
